@@ -5,7 +5,7 @@ function sum(a, b) {
     return res
 }
 function diff(a, b) {
-    let res = (a >= b ? (a - b) : Math.abs(a - b))
+    let res = (a >= b ? (a - b) : `${(a - b)} (since b > a)`)
     return res
 }
 function mul(a, b) {
