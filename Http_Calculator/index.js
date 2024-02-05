@@ -5,7 +5,7 @@ function sum(a, b) {
     return res
 }
 function diff(a, b) {
-    let res = (a >= b ? Math.abs(a - b) : Math.abs(b - a))
+    let res = (a >= b ? (a - b) : Math.abs(a - b))
     return res
 }
 function mul(a, b) {
@@ -13,23 +13,40 @@ function mul(a, b) {
     return res
 }
 function div(a, b) {
-    let res = (b==0 ? a / b : `Divide by Zero not possible`)
+    let res = (b !== 0  ? (a / b) : `Divide by Zero not possible`)
     return res
 }
 
-function calculator(a, b){
-    let res = sum(a, b)
-    return res
-}
+// function calculator(a, b, fn){
+//     let res = fn(a, b)
+//     return res
+// }
 
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('/sum', (req, res) => {
     const a = req.query.a
     const b = req.query.b
-    // const c = req.query.c
-    const ans = calculator(a, b)
-    res.send(`Answer is ${ans}`)
+    const ans = sum(a, b)
+    res.send(`Sum is ${ans}`)
+})
+app.get('/difference', (req, res) => {
+    const a = req.query.a
+    const b = req.query.b
+    const ans = diff(a, b)
+    res.send(`Difference is ${ans}`)
+})
+app.get('/product', (req, res) => {
+    const a = req.query.a
+    const b = req.query.b
+    const ans = mul(a, b)
+    res.send(`Product is ${ans}`)
+})
+app.get('/division', (req, res) => {
+    const a = req.query.a
+    const b = req.query.b
+    const ans = div(a, b)
+    res.send(`Division is ${ans}`)
 })
 
 app.listen(3000)
